@@ -33,8 +33,8 @@ function reporter(context, options = {}) {
 
     // アルファベットと全角の間はスペースを入れる
     const needSpaceBetween = (node, text) => {
-        const betweenHanAndZen = matchCaptureGroupAll(text, /[A-Za-z0-9]([^ 　])(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/);
-        const betweenZenAndHan = matchCaptureGroupAll(text, /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])([^ 　])[A-Za-z0-9]/);
+        const betweenHanAndZen = matchCaptureGroupAll(text, /([A-Za-z0-9])(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/);
+        const betweenZenAndHan = matchCaptureGroupAll(text, /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])[A-Za-z0-9]/);
         const reportMatch = (match) => {
             const {index} = match;
             report(node, new RuleError("原則として、全角文字と半角文字の間にスペースを入れます。", {
